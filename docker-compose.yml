@@ -1,0 +1,15 @@
+services:
+  apache:
+    container_name: apache
+    image: httpd:latest
+    networks:
+      - proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/usr/local/apache2/htdocs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.apache.rule=Host(`ut4.danielzl-vps.duckdns.org`)"
+networks:
+  proxy:
